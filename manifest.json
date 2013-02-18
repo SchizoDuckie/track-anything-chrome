@@ -1,0 +1,22 @@
+{
+  "name": "Track Anything! (Life Tracker)",
+   "manifest_version": 2,
+   "version" : "0.1",
+  "description": "Need to keep track of life statistics? Drinks per day, Cigarettes per day, hours worked, weight, workout time, mood, anything you can imagine you can now easily log",
+  "browser_action": {
+  	"default_title": "Track Anything",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions" : [
+    "notifications"
+  ],
+  "options_page": "options.html",
+  "update_url": "https://github.com/SchizoDuckie/track-anything-chrome/raw/master/updates.xml",
+  "homepage_url": "http://schizoduckie.github.com/track-anything-chrome/"
+}

@@ -1,0 +1,176 @@
+html
+{
+  width:400px;
+  background-color:#fff;
+  max-height:450px;
+  min-height:80px;
+  overflow-y:visible;
+}
+
+body
+{
+  background-color:#fff;
+  
+  max-height:450px;
+  min-height:80px;
+  overflow-y:visible;
+  -webkit-background-size:cover;
+
+  background-repeat:no-repeat;
+  height:100%;
+  max-width:400px;
+  margin:0;
+}
+
+*
+{
+  font-family:'Segoe UI', Tahoma, sans-serif;
+}
+
+::-webkit-scrollbar
+{
+  width:5px;
+}
+
+::-webkit-scrollbar-track
+{
+  -webkit-border-radius:10px;
+  -webkit-box-shadow:inset 0 0 6px rgba(255,255,255,0.3);
+  border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+  -webkit-border-radius:10px;
+  -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5);
+  background:rgba(25,25,25,0.8);
+  border-radius:10px;
+}
+
+body>div:target
+{
+  -webkit-overflow-scrolling:touch;
+  -webkit-transition:all .5s ease-in;
+  background-color:rgba(255,255,255,0.9);
+  bottom:0;
+  display:block;
+  min-height:80px;
+  overflow-y:auto;
+  top:0;
+}
+
+body>div:not(:target)
+{
+  -webkit-transform:translateX(-1000px);
+  -webkit-transition:all .5s ease-in;
+  background-color:#FFF;
+  bottom:0;
+  left:0;
+  position:absolute;
+  top:0;
+  z-index:50;
+}
+
+body >div:not(:target) li
+{
+  left:0;
+  position:absolute!important;
+  top:0;
+}
+
+@media screen and max-device-height 700px {
+  body > div
+  {
+    height:300px;
+  }
+}
+
+a {
+  cursor:pointer;
+}
+
+.rating {
+  width:250px;   
+  margin-left:-0.5em;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:175%;
+    line-height:1.2;
+    color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★';
+}
+
+.rating > input:checked ~ label {
+    color: lightblue;
+    text-shadow:1px 1px darkblue, 2px 2px gray, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: navy;
+    text-shadow:1px 1px darkblue, 2px 2px gray, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: navy;
+    text-shadow:1px 1px darkblue, 2px 2px gray, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+
+
+#trackers {
+  list-style-type:none;
+}
+
+#trackerlist {
+  list-style-type:none;
+  margin:0;
+}
+
+a.viewlog {
+  width:65px;
+  float:right;
+  margin-right:5px;
+}
+
+.well {
+  margin-bottom: 2px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.well > strong {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: gray;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Track Anything! (Lifetracker) for Chrome</title>
+	<link rel="stylesheet" href="static/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="static/css/style.css" charset='utf-8'>
+	<script src="lib/zepto.js"></script>
+	<script src="lib/underscore.min.js"></script>
+	<script src="lib/icanhaz.min.js"></script>
+	<script src="lib/klass.js"></script>
+	<script src="lib/moment.js"></script>
+	<script src="app/config.js"></script>
+	<script src="app/class.trackanything.js?"></script>
+	<script src="app/class.gui.js?"></script>
+	<script src="app/popup.js"></script>
+	<script src="lib/highcharts.zepto.js"></script>
+	<script src="lib/highstock.js"></script>
+	<script src="lib/exporting.js"></script>
+</head>
+<body>
+
+<div id="trackers">
+	<ul id='trackerlist'>
+
+	</ul>
+	<form id='addtracker'>
+		<h5>Add something to keep track of</h5>
+		<input type="text" name='trackername' placeholder="Give this tracker a name"> <br>
+		<strong>How do you want to track this?</strong><br>
+		 <label for='trackertyperating'><input type='radio'  name='trackertype'  id='trackertyperating' value='RATING'>I want to give a star rating (1-10)</label>
+		 <label for='trackertypecounter'><input type='radio'  name='trackertype'  id='trackertypecounter' value='COUNTER'>I want a button that i can press to track a daily total</label>
+		 <label for='trackertypetext'><input type='radio'  name='trackertype'  id='trackertypetext' value='TEXT'>I want to free type some text</label>
+		<input type="submit" value="Create">
+	</form>
+</div>
+
+<div id="searching">
+	<h5>Search Results:</h5>
+	<ul id="searchresult">
+
+	</ul>
+	<button class="goback">Go Back</button>
+</div>
+
+
+<!-- icanhzjs moustache templates -->
+<script id="showTracker" type="text/html">
+  	{{#tracker}}
+		<div id='tracker_{{ name }}' data-name='{{ name }}'>
+			<strong>Details for tracker {{ name }}	</strong>			
+			<div class='chart' style='width:350px; height: 400px'></div>
+		    <table class='table table-condensed table-striped table-bordered'>
+		    	<tr><th>Date</th><th>Value</th><th>Comment</th></tr>
+		    	{{#values}}
+		    	<tr>
+		    		<td class='timestamp'>{{formattedTime}}</td>
+		    		<td>{{value}}</td>
+		    		<td>{{comment}}</td>
+		    	</tr>
+		    	{{/values}}
+		    </table>
+		    
+		</div>
+	{{/tracker}}
+</script>
+
+<script id='trackerContainer' type='text/html'>
+	<div id='{{id}}' data-name='{{name}}' class='tracker'><strong>{{name}}</strong></div>
+</script>
+
+<script id="showTracker1" type="text/html">
+	{{#tracker}}
+		<li data-name='{{ name }}' data-id="{{ id }}">
+			<div class='row-fluid' >
+				<div class='well well-small span9'>
+					<strong> {{ name }}	</strong> 
+					<input type='button' class='btn-large min btn-inverse' value='-'>
+					<input type='button' class='btn-large plus btn-success' value='+'>
+					<h3 style=' float:right' >Today: {{ totalToday }}</h3>
+				</div>
+				<div class='span3'>
+					<a class='viewlog btn btn-medium'><s class='icon-eye-open'></s> details</a></div>
+					<a class='viewlog btn btn-medium'><s class='icon-edit'></s> edit </a>
+				</div>
+			</div>
+		</li>
+	{{/tracker}}
+</script>
+
+<script id="showTracker2" type="text/html">
+	{{#tracker}}
+		<li data-name='{{ name }}' data-id="{{ id }}">
+			
+			<div class='row-fluid'>
+				<div class='well well-small span9'>
+					<strong> {{ name }}	</strong> 
+					<fieldset class="rating">
+				        <input type="radio" id="{{ id }}star10" name="rating" value="10" /><label for="{{ id }}star10" title="WOOHOO!">10 stars</label>
+					    <input type="radio" id="{{ id }}star9" name="rating" value="9" /><label for="{{ id }}star9" title="Awesome!">9 stars</label>
+					    <input type="radio" id="{{ id }}star8" name="rating" value="8" /><label for="{{ id }}star8" title="Great!">8 stars</label>
+					    <input type="radio" id="{{ id }}star7" name="rating" value="7" /><label for="{{ id }}star7" title="Good!">7 stars</label>
+					    <input type="radio" id="{{ id }}star6" name="rating" value="6" /><label for="{{ id }}star6" title="Okay">6 stars</label>
+					    <input type="radio" id="{{ id }}star5" name="rating" value="5" /><label for="{{ id }}star5" title="Meh">5 stars</label>
+					    <input type="radio" id="{{ id }}star4" name="rating" value="4" /><label for="{{ id }}star4" title="Grr">4 stars</label>
+					    <input type="radio" id="{{ id }}star3" name="rating" value="3" /><label for="{{ id }}star3" title="AARG">3 stars</label>
+					    <input type="radio" id="{{ id }}star2" name="rating" value="2" /><label for="{{ id }}star2" title="Kinda bad">2 stars</label>
+					    <input type="radio" id="{{ id }}star1" name="rating" value="1" /><label for="{{ id }}star1" title="Sucks big time">1 star</label>
+					</fieldset>
+				</div>
+				<div class=' span3'>
+					<a class='viewlog btn btn-medium'><s class='icon-eye-open'></s> details</a>
+					<a class='viewlog btn btn-medium'><s class='icon-edit'></s> edit </a>
+				</div>
+			</div>
+		</li>
+	{{/tracker}}
+</script>
+
+<script id="showTracker3" type="text/html">
+	{{#tracker}}
+		<li data-name='{{ name }}' data-id="{{ id }}">
+		<div class='row-fluid'>
+				<div class='well well-small span9'>
+					<strong> {{ name }}	</strong> 
+					<input type='text'  placeholder='type here'>
+				</div>
+				<div class=' span3'>
+					<a class='viewlog btn btn-medium'><s class='icon-eye-open'></s> details</a>
+					<a class='viewlog btn btn-medium'><s class='icon-edit'></s> edit </a>
+				</div>
+			</div>		
+		</li>
+	{{/tracker}}
+</script>
+
+
+
+</body>
+</html>
