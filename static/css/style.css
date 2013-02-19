@@ -105,13 +105,13 @@ a {
 
 .rating:not(:checked) > label {
     float:right;
-    width:1em;
+    width:25px;
     
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:175%;
-    line-height:1.2;
+    font-size:25px;
+    line-height:25px;
     color:#ddd;
 }
 
@@ -120,14 +120,17 @@ a {
 }
 
 .rating > input:checked ~ label {
-    color: lightblue;
-    text-shadow:1px 1px darkblue, 2px 2px gray, .1em .1em .2em rgba(0,0,0,.5);
+    color: green;
+    -webkit-transform: rotate(180deg);
+    -webkit-transition: all 0.5s ease-in-out;
+    -webkit-transform-origin: 50% 58%;
+    
 }
 
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label {
-    color: navy;
-    text-shadow:1px 1px darkblue, 2px 2px gray, .1em .1em .2em rgba(0,0,0,.5);
+    color: black;
+    
 }
 
 .rating > input:checked + label:hover,
@@ -135,8 +138,7 @@ a {
 .rating > input:checked ~ label:hover,
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
-    color: navy;
-    text-shadow:1px 1px darkblue, 2px 2px gray, .1em .1em .2em rgba(0,0,0,.5);
+    color: green;
 }
 
 .rating > label:active {
@@ -156,16 +158,20 @@ a {
   margin:0;
 }
 
-a.viewlog {
-  width:65px;
+.viewlog {
+  
   float:right;
   margin-right:5px;
+}
+.viewlog:hover {
+  text-decoration:underline;
+  cursor:pointer;
 }
 
 .well {
   margin-bottom: 2px;
   position: relative;
-  padding-bottom: 15px;
+  
 }
 
 .well > strong {
@@ -173,4 +179,24 @@ a.viewlog {
   bottom: 5px;
   right: 5px;
   color: gray;
+}
+
+.easyPieChart {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.easyPieChart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.row-fluid.centered > div {
+  text-align: center;
+}
+
+.row-fluid.centered > div > div.pie {
+  margin: 0 auto ;  
 }

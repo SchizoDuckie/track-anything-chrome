@@ -70,7 +70,15 @@ var Gui = klass({
             $(this.element).append(ich[methd]({tracker: trackers[i] }));
         }
        
-
+        $('.pie').easyPieChart({
+         size: 40,
+         lineWidth: 6,
+         lineCap: false,
+         trackColor: '#efefef',
+         scaleColor:false,
+         barColor: 'green',
+         animate: 1000
+        });
         $(this.target).show();
     },
 
@@ -101,9 +109,11 @@ var Gui = klass({
             rangeSelector : {
                 selected : 1
             },
-
+            xAxis: {
+                ordinal: false
+            },
             title : {
-                text : 'Bla'
+                text : 'Historical data for ' + name
             },
             plotOptions: {
                 line: {
