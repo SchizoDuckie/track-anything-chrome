@@ -30,8 +30,9 @@
 		 <label for='trackertyperating'><input type='radio'  name='trackertype'  id='trackertyperating' value='RATING'>I want to give a star rating (1-10)</label>
 		 <label for='trackertypecounter'><input type='radio'  name='trackertype'  id='trackertypecounter' value='COUNTER'>I want a button that i can press to track a daily total</label>
 		 <label for='trackertypetext'><input type='radio'  name='trackertype'  id='trackertypetext' value='TEXT'>I want to free type some text</label>
+		 <label for='trackertypetime'><input type='radio'  name='trackertype'  id='trackertypetime' value='TIME'>I want to track how long i'm working on something</label>
 		<input type="submit" value="Create">
-	</form>ed
+	</form>
 </div>
 
 <div id="searching">
@@ -72,39 +73,30 @@
 	{{#tracker}}
 		<li data-name='{{ name }}' data-id="{{ id }}">
 				<div class='well well-small'>
-					<div class='row-fluid'>
-						<div class='span12' style=' padding:5px;' >
-							<strong class='viewlog'> {{ name }}	</strong> 
-						
-							<input type='button' class='btn-large plus btn-success' value='+ 1' style=' width: 100px'>
-							<input type='button' class='btn-large plus btn' value='- 1' style=' width: 70px'>
-						</div>
-					</div>
-					<div class='row-fluid centered'>
-						<div class='span2'>
-							<div class="pie" data-percent="73">73</div>
-							<small>Today</small>
-						</div>
-						<div class='span2'>
-							<div class="pie" data-percent="4">4</div>
-							<small>Yesterday</small>
-						</div>
-						<div class='span2'>
-							<div class="pie" data-percent="93">93</div>
-							<small>This week</small>
-						</div>
-						<div class='span3'  >
-							<div class="pie" data-percent="50">50</div>
-							<small>Avg this week</small>
-						</div>
-						<div class='span3'  >
-							<div class="pie" data-percent="50">20</div>
-							<small>Avg last week</small>
-						</div>
-					</div>
-					
-				</div>				
-			</div>
+					<table class="table table-condensed" style='width:100%; margin-bottom:0;'>
+						<tr>
+							<td colspan='5'>
+								<strong class='viewlog'> {{ name }}	</strong> 
+								<input type='button' class='btn-large plus btn-success' value='+ 1' style=' width: 100px'>
+								<input type='button' class='btn-large plus btn' value='- 1' style=' width: 70px'>
+							</td>
+						</tr>					
+						<tr>
+							<td><div class="pie" data-percent="73">73</div></td>
+							<td><div class="pie" data-percent="4">4</div></td>						
+							<td><div class="pie" data-percent="93">93</div></td>						
+							<td><div class="pie" data-percent="50">50</div></td>						
+							<td><div class="pie" data-percent="50">20</div></td>						
+						</tr>
+						<tr>
+							<td><small>Today</small></td>
+							<td><small>Yesterday</small></td>
+							<td><small>This week</small></td>
+							<td><small>Avg this week</small></td>
+							<td><small>Avg last week</small></td>
+						</tr>
+					</table>
+				</div>
 		</li>
 	{{/tracker}}
 </script>
@@ -114,43 +106,39 @@
 		<li data-name='{{ name }}' data-id="{{ id }}">
 			
 				<div class='well well-small'>
-					<div class='row-fluid'>
-						<strong class='viewlog'> {{ name }}	</strong> 
-						<fieldset class="rating">
-					        <input type="radio" id="{{ id }}star10" name="rating" value="10" /><label for="{{ id }}star10" title="WOOHOO!">10 stars</label>
-						    <input type="radio" id="{{ id }}star9" name="rating" value="9" /><label for="{{ id }}star9" title="Awesome!">9 stars</label>
-						    <input type="radio" id="{{ id }}star8" name="rating" value="8" /><label for="{{ id }}star8" title="Great!">8 stars</label>
-						    <input type="radio" id="{{ id }}star7" name="rating" value="7" /><label for="{{ id }}star7" title="Good!">7 stars</label>
-						    <input type="radio" id="{{ id }}star6" name="rating" value="6" /><label for="{{ id }}star6" title="Okay">6 stars</label>
-						    <input type="radio" id="{{ id }}star5" name="rating" value="5" /><label for="{{ id }}star5" title="Meh">5 stars</label>
-						    <input type="radio" id="{{ id }}star4" name="rating" value="4" /><label for="{{ id }}star4" title="Grr">4 stars</label>
-						    <input type="radio" id="{{ id }}star3" name="rating" value="3" /><label for="{{ id }}star3" title="AARG">3 stars</label>
-						    <input type="radio" id="{{ id }}star2" name="rating" value="2" /><label for="{{ id }}star2" title="Kinda bad">2 stars</label>
-						    <input type="radio" id="{{ id }}star1" name="rating" value="1" /><label for="{{ id }}star1" title="Sucks big time">1 star</label>
-						</fieldset>
-					</div>
-					<div class='row-fluid centered'>
-						<div class='span2'>
-							<div class="pie" data-percent="73">73</div>
-							<small>Today</small>
-						</div>
-						<div class='span2'>
-							<div class="pie" data-percent="4">4</div>
-							<small>Yesterday</small>
-						</div>
-						<div class='span2'>
-							<div class="pie" data-percent="93">93</div>
-							<small>This week</small>
-						</div>
-						<div class='span3'  >
-							<div class="pie" data-percent="50">50</div>
-							<small>Avg this week</small>
-						</div>
-						<div class='span3'  >
-							<div class="pie" data-percent="50">20</div>
-							<small>Avg last week</small>
-						</div>
-					</div>
+					<table class="table table-condensed" style='margin-bottom:0; width:100%;'>
+						<tr>
+							<td colspan='5'>
+								<strong class='viewlog'> {{ name }}	</strong> 
+								<fieldset class="rating">
+							        <input type="radio" id="{{ id }}star10" name="rating" value="10" /><label for="{{ id }}star10" title="WOOHOO!">10 stars</label>
+								    <input type="radio" id="{{ id }}star9" name="rating" value="9" /><label for="{{ id }}star9" title="Awesome!">9 stars</label>
+								    <input type="radio" id="{{ id }}star8" name="rating" value="8" /><label for="{{ id }}star8" title="Great!">8 stars</label>
+								    <input type="radio" id="{{ id }}star7" name="rating" value="7" /><label for="{{ id }}star7" title="Good!">7 stars</label>
+								    <input type="radio" id="{{ id }}star6" name="rating" value="6" /><label for="{{ id }}star6" title="Okay">6 stars</label>
+								    <input type="radio" id="{{ id }}star5" name="rating" value="5" /><label for="{{ id }}star5" title="Meh">5 stars</label>
+								    <input type="radio" id="{{ id }}star4" name="rating" value="4" /><label for="{{ id }}star4" title="Grr">4 stars</label>
+								    <input type="radio" id="{{ id }}star3" name="rating" value="3" /><label for="{{ id }}star3" title="AARG">3 stars</label>
+								    <input type="radio" id="{{ id }}star2" name="rating" value="2" /><label for="{{ id }}star2" title="Kinda bad">2 stars</label>
+								    <input type="radio" id="{{ id }}star1" name="rating" value="1" /><label for="{{ id }}star1" title="Sucks big time">1 star</label>
+								</fieldset>
+							</td>
+						</tr>
+						<tr>
+							<td><div class="pie" data-percent="73">73</div></td>
+							<td><div class="pie" data-percent="4">4</div></td>						
+							<td><div class="pie" data-percent="93">93</div></td>						
+							<td><div class="pie" data-percent="50">50</div></td>						
+							<td><div class="pie" data-percent="50">20</div></td>						
+						</tr>
+						<tr>
+							<td><small>Today</small></td>
+							<td><small>Yesterday</small></td>
+							<td><small>This week</small></td>
+							<td><small>Avg this week</small></td>
+							<td><small>Avg last week</small></td>
+						</tr>
+					</table>
 				</div>
 				
 			</div>
@@ -170,6 +158,34 @@
 		</li>
 	{{/tracker}}
 </script>
+
+<script id="showTracker4" type="text/html">
+	{{#tracker}}
+		<li data-name='{{ name }}' data-id="{{ id }}">
+				<div class='well well-small'>
+					<div class='well well-small'>
+					<table class="table table-condensed" style='width:100%; margin-bottom:0;'>
+						<tr>
+							<td>
+								<strong class='viewlog'> {{ name }}	</strong>
+
+								<input type='text'  placeholder='What are you working on?'><p style=' display:inline-block; padding:5px;'><input type='button' class='btn-large plus btn-success' value='Start' ></p>
+							</td>
+						</tr>
+							
+						<tr>
+							<td>
+								Distribution today:
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				
+		</li>
+	{{/tracker}}
+</script>
+
 
 
 

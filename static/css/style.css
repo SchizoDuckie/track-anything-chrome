@@ -193,10 +193,23 @@ a {
     left: 0;
 }
 
-.row-fluid.centered > div {
-  text-align: center;
+
+.well .table tr:first-child td, .table tr:nth-last-child(2) td {
+  border-top: 0;
 }
 
-.row-fluid.centered > div > div.pie {
-  margin: 0 auto ;  
+.well .table tr:last-child td {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 20%;
+  line-height: 11px;
+  color: #151515;
+}
+
+fieldset {
+background-color: white;
+padding: 6px;
+border: 1px solid gray;
+border-radius: 5px;
 }

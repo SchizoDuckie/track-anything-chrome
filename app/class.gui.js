@@ -103,17 +103,26 @@ var Gui = klass({
 
       window.chart = new Highcharts.StockChart({
             chart : {
-                renderTo : $('#' + id +" .chart")[0]
+                renderTo : $('#' + id +" .chart")[0],
+                zoomType: 'x'
             },
 
-            rangeSelector : {
-                selected : 1
+            rangeSelector: {
+                enabled: false
             },
             xAxis: {
                 ordinal: false
             },
             title : {
                 text : 'Historical data for ' + name
+            },
+            navigation: {
+                zoom: {
+                    enabled: false
+                },
+                buttonOptions: {
+                    enabled: false
+                }
             },
             plotOptions: {
                 line: {

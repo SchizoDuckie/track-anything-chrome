@@ -2,6 +2,7 @@ var TRACKERS = {};
 TRACKERS.COUNTER = 1;
 TRACKERS.RATING = 2;
 TRACKERS.TEXT = 3;
+TRACKERS.TIME = 4;
 
 var store = klass({
 
